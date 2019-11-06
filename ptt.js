@@ -30,32 +30,39 @@ const ptt = (function () {
             };
 
             // add listener to foo
-            gunDB.get('audio').get('room').on(function (data) {
+            gunDB.get('audio').get('gun-talk').on(function (data, room) {
                 // console.log("received\n" + JSON.stringify(data));
 
                 if (initial) {
                     initial = false;
                     return;
                 }
-                if (data == 'started') {
+
+                if (data.user == gunDB._.opt.pid) {
+                    return;
+                }
+
+                data.event = JSON.parse(data.event);
+
+                if (data.event == 'started') {
                     if (button) {
                         button.disabled = true;
                     }
                 }
 
-                else if (data == 'stopped') {
+                else if (data.event == 'stopped') {
                     if (button) {
                         button.disabled = false;
                     }
                     player.stop();
                 }
 
-                else if (data.channels != undefined) {
-                    player = audiostream.getNewPlayer(data);
+                else if (data.event.channels != undefined) {
+                    player = audiostream.getNewPlayer(data.event);
                 }
 
                 else {
-                    let byteCharacters = atob(data);
+                    let byteCharacters = atob(data.event);
                     let byteArray = str2ab(byteCharacters);
 
                     player.play(byteArray);

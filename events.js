@@ -53,9 +53,12 @@ Events.prototype.dispatchEvent = function (event, data) {
     if (!(event in this.listeners)) {
         return;
     }
-    for (var i = 0; i < this.listeners[event].length; i++) {
-        // this.listeners[event][i].call(this, data);
-        // console.log("sent\n" + JSON.stringify(data));
-        gunDB.get('audio').get('room').put(data);
-    }
+    // for (var i = 0; i < this.listeners[event].length; i++) {
+    // this.listeners[event][i].call(this, data);
+    // console.log("sent\n" + JSON.stringify(data));
+    sentData = {}
+    sentData.user = gunDB._.opt.pid
+    sentData.event = JSON.stringify(data);
+    gunDB.get('audio').get('gun-talk').put(sentData);
+    // }
 }

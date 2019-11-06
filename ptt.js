@@ -8,6 +8,7 @@ const ptt = (function () {
     var button;
     var id;
     var initial = true;
+    var lastTimeStamp = new Date().getTime();
 
     return {
         connect: function () {
@@ -31,18 +32,21 @@ const ptt = (function () {
 
             // add listener to foo
             gunDB.get('audio').get('gun-talk').on(function (data, room) {
-                // console.log("received\n" + JSON.stringify(data));
+                console.log("received\n" + data.timestamp);
 
                 if (initial) {
                     initial = false;
                     return;
                 }
 
+                if (lastTimeStamp == data.timestamp) {
+                    return;
+                }
+                lastTimeStamp = data.timestamp;
+
                 if (data.user == gunDB._.opt.pid) {
                     return;
                 }
-
-                data.event = JSON.parse(data.event);
 
                 if (data.event == 'started') {
                     if (button) {
@@ -57,12 +61,13 @@ const ptt = (function () {
                     player.stop();
                 }
 
-                else if (data.event.channels != undefined) {
-                    player = audiostream.getNewPlayer(data.event);
+                else if (data.event == 'metadata') {
+                    var metadata = JSON.parse(data.data);
+                    player = audiostream.getNewPlayer(metadata);
                 }
 
-                else {
-                    let byteCharacters = atob(data.event);
+                else if (data.event == 'binary') {
+                    let byteCharacters = atob(data.data);
                     let byteArray = str2ab(byteCharacters);
 
                     player.play(byteArray);

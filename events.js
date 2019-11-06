@@ -58,7 +58,16 @@ Events.prototype.dispatchEvent = function (event, data) {
     // console.log("sent\n" + JSON.stringify(data));
     sentData = {}
     sentData.user = gunDB._.opt.pid
-    sentData.event = JSON.stringify(data);
+    sentData.event = event
+    sentData.timestamp = new Date().getTime();
+
+    if (event == 'metadata') {
+        sentData.data = JSON.stringify(data);
+    }
+    else {
+        sentData.data = data;
+    }
+    
     gunDB.get('audio').get('gun-talk').put(sentData);
     // }
 }

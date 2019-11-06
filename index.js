@@ -15,6 +15,7 @@ if (hashRoom != undefined) {
 }
 
 showMessage("Welcome to room\n" + room);
+showMessage("\n\nPress or hold button or spacebar")
 
 ptt.connect().then((connection) => {
     connection.bind(button);
@@ -25,4 +26,22 @@ ptt.connect().then((connection) => {
 
 function showMessage(msg) {
     message.textContent += `\n${msg}`;
+}
+
+window.pressedButton = false;
+
+document.onkeyup = function (e) {
+    if (e.which == 32) {
+        console.log("stop");
+        window.pressedButton = false;
+        button.onpointerup();
+    }
+}
+
+document.onkeydown = function (e) {
+    if (e.which == 32 && window.pressedButton == false && button.disabled == false) {
+        console.log("start")
+        window.pressedButton = true;
+        button.onpointerdown();
+    }
 }

@@ -31,8 +31,8 @@ const ptt = (function () {
             };
 
             // add listener to foo
-            gunDB.get('audio').get('gun-talk').on(function (data, room) {
-                console.log("received\n" + data.timestamp);
+            gunDB.get('audio').get(room).on(function (data, room) {
+                // console.log("received\n" + data.timestamp);
 
                 if (initial) {
                     initial = false;

@@ -68,6 +68,6 @@ Events.prototype.dispatchEvent = function (event, data) {
         sentData.data = data;
     }
     
-    gunDB.get('audio').get('gun-talk').put(sentData);
+    gunDB.get('audio').get(room).put(sentData);    
     // }
 }

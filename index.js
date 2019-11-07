@@ -3,6 +3,7 @@ var opt = { peers: peers, localStorage: false, radisk: false };
 const gunDB = Gun(opt);
 
 var message = document.querySelector('#message');
+var usersCounter = document.querySelector('#users');
 var button = document.querySelector('#btn-record');
 var info = document.querySelector("#info-subscribe");
 var subscribe = document.querySelector("#btn-subscribe");

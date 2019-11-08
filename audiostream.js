@@ -200,7 +200,7 @@ AudioStream.prototype.getRecorder = function(){
                     mediaRecorder.stop();   
                     setTimeout(()=>{
                         this.websocket.send('stopped');
-                    }, this.configuration.stopDelay * SECOND);
+                    }, this.configuration.duration * SECOND);
                 };
 
                 resolve({ start, stop });

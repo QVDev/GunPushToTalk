@@ -35,7 +35,11 @@ document.onkeyup = function (e) {
     if (e.which == 32) {
         console.log("stop");
         window.pressedButton = false;
-        button.onpointerup();
+        button.onmouseup();
+
+        button.style.backgroundColor = "";
+        button.style.color = "";
+
     }
 }
 
@@ -43,6 +47,9 @@ document.onkeydown = function (e) {
     if (e.which == 32 && window.pressedButton == false && button.disabled == false) {
         console.log("start")
         window.pressedButton = true;
-        button.onpointerdown();
+        button.onmousedown();
+
+        button.style.backgroundColor = "white";
+        button.style.color = "black";
     }
 }

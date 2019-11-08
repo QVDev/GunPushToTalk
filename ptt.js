@@ -20,15 +20,11 @@ const ptt = (function () {
                 button = btn;
                 audiostream.getRecorder().then(recorder => {
 
-                    button.onmousedown = () => {
+                    button.onpointerdown = () => {
                         recorder.start();
                     };
 
-                    button.onmouseup = () => {
-                        recorder.stop();
-                    };
-
-                    button.onmouseout = () => {
+                    button.onpointerup = () => {
                         recorder.stop();
                     };
                 });

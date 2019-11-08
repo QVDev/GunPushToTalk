@@ -22,11 +22,21 @@ const ptt = (function () {
 
                     button.onpointerdown = () => {
                         recorder.start();
+                        button.disabled = true;
                     };
 
                     button.onpointerup = () => {
                         recorder.stop();
+                        button.disabled = false;
                     };
+
+                    button.onpointerout = () => {
+                        if (button.disabled) {
+                            recorder.stop();
+                            button.disabled = false;
+                        }
+                    };
+
                 });
             };
 

@@ -10,12 +10,12 @@ if (pid == null || pid == undefined) {
 }
 
 console.log(pid);
-window.onunload = window.onbeforeunload
 
-window.addEventListener('beforeunload', function (e) {
+window.onunload = window.onbeforeunload = function()
+{
     console.log("leaving " + pid);
     setPresence("left");
-});
+}
 
 window.onload = function (e) {
     console.log("entering " + pid);

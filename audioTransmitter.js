@@ -40,7 +40,7 @@ var audioTransmitter = (function () {
 
   function constructData(event, data) {
     dataToSend = {}
-    dataToSend.user = "123" //gunDB._.opt.pid
+    dataToSend.user = gunDB._.opt.pid
     dataToSend.event = event
     dataToSend.timestamp = new Date().getTime();
 

@@ -6,6 +6,13 @@
   <title>Push-To-Talk Demo</title>
   <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gun/lib/unset.js"></script>
+
+  
+  <script src="bundle.js"></script>
+  <script src="audiostream.js"></script>
+  <script src="audioTransmitter.js"></script>
+  <script src="audioBridge.js"></script>
+  <script src="audioReceiver.js"></script>
 </head>
 
 <body style="background-color: black; color: white;">
@@ -15,15 +22,20 @@
     <br />
     <pre style="font-size:15px;" id="users"></pre>
     <pre style="font-size:15px;" id="info-subscribe"></pre>
-    <input style="height:100px; width:200px;" id="btn-record" type="button" value="PUSH TO TALK!"></input>
+    <input style="height:100px; width:200px;" id="btn-record" type="button" value="PUSH TO TALK!"
+      onpointerdown="audioTransmitter.start()" onpointerup="audioTransmitter.stop()"
+      onpointerout="audioTransmitter.stop()"></input>
   </div>
+  
+  <script src="index.js"></script>
+  <script src="activity.js"></script>
 
-  <script src="bundle.js"></script>
+  <!-- <script src="bundle.js"></script>
   <script src="audiostream.js"></script>
   <script src="events.js"></script>
   <script src="ptt.js"></script>
   <script src="index.js"></script>
-  <script src="activity.js"></script>
+  <script src="activity.js"></script> -->
 </body>
 
 </html>

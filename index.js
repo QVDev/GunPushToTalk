@@ -15,15 +15,10 @@ if (hashRoom != undefined) {
     room = window.location.hash.split('#')[1];
 }
 
+audioBridge.init();
+
 showMessage("Welcome to room\n" + room);
 showMessage("\n\nPress or hold button or spacebar")
-
-ptt.connect().then((connection) => {
-    connection.bind(button);
-}).catch(err => {
-    showMessage("Connection failed!");
-    showMessage(JSON.stringify(err));
-});
 
 function showMessage(msg) {
     message.textContent += `\n${msg}`;

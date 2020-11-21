@@ -1,6 +1,4 @@
-var peers = ['https://livecodestream-us.herokuapp.com/gun', 'https://livecodestream-eu.herokuapp.com/gun'];
-var opt = { peers: peers, localStorage: false, radisk: false };
-const gunDB = Gun(opt);
+const gunDB = Gun('https://gunptt.herokuapp.com/gun');
 
 var message = document.querySelector('#message');
 var usersCounter = document.querySelector('#users');

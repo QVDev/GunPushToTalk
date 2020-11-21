@@ -192,11 +192,13 @@ AudioStream.prototype.getRecorder = function () {
                 };
 
                 var stop = () => {
-                    clearInterval(interval);
-                    mediaRecorder.stop();
-                    setTimeout(() => {
-                        audioTransmitter.transmitStopData('stopped');
-                    }, this.configuration.duration * SECOND);
+                    if (mediaRecorder.state == 'recording') {
+                        clearInterval(interval);
+                        mediaRecorder.stop();
+                        setTimeout(() => {
+                            audioTransmitter.transmitStopData('stopped');
+                        }, this.configuration.duration * SECOND);
+                    }
                 };
 
                 resolve({ start, stop });
